@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Bussines Logic/Bussines Logic.csproj" Id="481571ae-5f5a-4b6b-9825-bdef3131d077" />
+  <Project Path="Data/Data.csproj" Id="84797827-56be-4cff-a119-9461e8df7f01" />
+  <Project Path="Finansal app/Finansal app.csproj" />
+</Solution>
