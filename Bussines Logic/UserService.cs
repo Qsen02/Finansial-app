@@ -7,9 +7,11 @@ namespace Bussines_Logic
     public class UserService
     {
         private readonly FinansalContext _context;
-        public UserService(FinansalContext context) 
+        private readonly TransactionService transactionService;
+        public UserService(FinansalContext context,TransactionService transactionService) 
         {
             _context = context;
+            this.transactionService = transactionService;
         }
         public async Task<User> Register(string username,string email, string password) 
         {
@@ -49,20 +51,23 @@ namespace Bussines_Logic
         }
         public async Task<User> GetUserById(int userId) 
         {
-            User user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            User user = await _context.Users.Include(el=>el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null)
             {
                 throw new Exception("User not found!");
             }
             return user;
         }
-        public async Task<User> AddTransactionToUser(int userId,Transaction transaction) 
+        public async Task<User> AddTransactionToUser(int userId, string description, int price, CategoryType category, TypeEnum type) 
         {
+            Transaction transaction = await transactionService.CreateTransaction(description, price, category, type);
             User userToUpdate = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (userToUpdate == null) 
             {
                 throw new Exception("User not found!");
             }
+            transaction.UserId = userId;
+            transaction.User = userToUpdate;
             userToUpdate.Transactions.Add(transaction);
             if (transaction.Type == TypeEnum.Income)
             {
