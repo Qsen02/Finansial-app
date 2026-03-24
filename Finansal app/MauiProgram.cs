@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Bussines_Logic;
+using Data;
+using Finansal_app.Screens;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Finansal_app
 {
@@ -17,6 +21,12 @@ namespace Finansal_app
 
 #if DEBUG
     		builder.Logging.AddDebug();
+            builder.Services.AddDbContext<FinansalContext>(options =>
+            options.UseSqlServer(
+                "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=FinancialDB;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False;Command Timeout=30"
+            ));
+            builder.Services.AddSingleton<TransactionService>();
+            builder.Services.AddSingleton<UserService>();
 #endif
 
             return builder.Build();

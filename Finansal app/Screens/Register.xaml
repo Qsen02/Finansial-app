@@ -5,8 +5,38 @@
              Title="Register">
     <VerticalStackLayout>
         <Label 
-            Text="Register page works!"
+            Text="Wellcome to Finansial app! Make your registration below."
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            FontSize="20"/>
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="15">
+                <Label 
+                    Text="Full name"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Start" 
+                    FontSize="16"/>
+                <Entry x:Name="NameEntry" Keyboard="Text"  WidthRequest="250" HorizontalOptions="Center"/>
+                <Label 
+                    Text="Email"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Start" 
+                    FontSize="16"/>
+                <Entry x:Name="EmailEntry" Keyboard="Email"  WidthRequest="250" HorizontalOptions="Center"/>
+                <Label 
+                    Text="Password"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Start" 
+                    FontSize="16"/>
+                <Entry x:Name="PasswordEntry" IsPassword="True" WidthRequest="250" HorizontalOptions="Center"/>
+                <Label 
+                    Text="Repeat password"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Start" 
+                    FontSize="16"/>
+                <Entry x:Name="RepassEntry"  IsPassword="True" WidthRequest="250" HorizontalOptions="Center"/>
+                <Button Text="Register" Clicked="OnRegister" BackgroundColor="SkyBlue" TextColor="White"/>
+            </VerticalStackLayout>
+        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>
