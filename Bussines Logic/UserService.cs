@@ -7,20 +7,18 @@ namespace Bussines_Logic
     public class UserService
     {
         private readonly FinansalContext _context;
-        private readonly TransactionService transactionService;
-        public UserService(FinansalContext context,TransactionService transactionService) 
+        public UserService(FinansalContext context) 
         {
             _context = context;
-            this.transactionService = transactionService;
         }
         public async Task<User> Register(string username,string email, string password) 
         {
-            User isValidUsername=await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+            User? isValidUsername=await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
             if (isValidUsername != null)
             {
                 throw new Exception("User with this username already exist!");
             }
-            User isValidEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            User? isValidEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (isValidEmail != null)
             {
                 throw new Exception("User with this email already exist!");
@@ -37,7 +35,7 @@ namespace Bussines_Logic
         }
         public async Task<User> Login(string username, string password) 
         {
-            User user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+            User? user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
             if (user == null)
             {
                 throw new Exception("Username or password don't match!");
@@ -51,7 +49,7 @@ namespace Bussines_Logic
         }
         public async Task<User> GetUserById(int userId) 
         {
-            User user = await _context.Users.Include(el=>el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
+            User? user = await _context.Users.Include(el=>el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null)
             {
                 throw new Exception("User not found!");
@@ -60,21 +58,28 @@ namespace Bussines_Logic
         }
         public async Task<User> AddTransactionToUser(int userId, string description, int price, CategoryType category, TypeEnum type) 
         {
-            Transaction transaction = await transactionService.CreateTransaction(description, price, category, type);
-            User userToUpdate = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            Transaction newTrasaction = new Transaction()
+            {
+                Description = description,
+                Price = price,
+                Category = category,
+                Type = type
+            };
+            _context.Transactions.Add(newTrasaction);
+            User? userToUpdate = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (userToUpdate == null) 
             {
                 throw new Exception("User not found!");
             }
-            transaction.UserId = userId;
-            transaction.User = userToUpdate;
-            userToUpdate.Transactions.Add(transaction);
-            if (transaction.Type == TypeEnum.Income)
+            newTrasaction.UserId = userId;
+            newTrasaction.User = userToUpdate;
+            userToUpdate.Transactions.Add(newTrasaction);
+            if (newTrasaction.Type == TypeEnum.Income)
             {
-                userToUpdate.Balance += transaction.Price;
+                userToUpdate.Balance += newTrasaction.Price;
             } else 
             {
-                userToUpdate.Balance -= transaction.Price;
+                userToUpdate.Balance -= newTrasaction.Price;
             }
             await _context.SaveChangesAsync();
             return userToUpdate;

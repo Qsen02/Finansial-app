@@ -7,16 +7,14 @@ namespace Bussines_Logic
     public class TransactionService
     {
         private readonly FinansalContext _context;
-        private readonly UserService _userService;
-        public TransactionService(FinansalContext context,UserService userService)
+        public TransactionService(FinansalContext context)
         {
             _context = context;
-            _userService = userService;
         }
 
         public async Task<Transaction> GetTransactionsById(int transactionId) 
         {
-            Transaction transaction = await _context.Transactions.Include(el=>el.User).FirstOrDefaultAsync(el=>el.Id == transactionId);
+            Transaction? transaction = await _context.Transactions.Include(el=>el.User).FirstOrDefaultAsync(el=>el.Id == transactionId);
             if (transaction == null)
             {
                 throw new Exception("Transaction not found!");
@@ -37,13 +35,21 @@ namespace Bussines_Logic
         }
         public async Task<List<Transaction>> GetAllIncamesForUser(int userId) 
         {
-            User user = await _userService.GetUserById(userId);
+            User? user = await _context.Users.Include(el => el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                throw new Exception("User not found!");
+            }
             List<Transaction> incames = user.Transactions.Where(el => el.Type == TypeEnum.Income).ToList();
             return incames;
         }
         public async Task<List<Transaction>> GetUserTransactionsByDate(int userId,int year, int month) 
         {
-            User user= await _userService.GetUserById(userId);
+            User? user = await _context.Users.Include(el => el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                throw new Exception("User not found!");
+            }
             var start = new DateOnly(year, month, 1);
             var end = start.AddMonths(1);
 
@@ -54,7 +60,11 @@ namespace Bussines_Logic
         }
         public async Task<List<Transaction>> SearchTransactionsByKeywords(int userId,string keyword) 
         {
-            User user = await _userService.GetUserById(userId);
+            User? user = await _context.Users.Include(el => el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                throw new Exception("User not found!");
+            }
 
             List<Transaction> transactions = user.Transactions
                 .Where(el=>EF.Functions.Like(el.Description,$"%{keyword}%"))
@@ -64,7 +74,11 @@ namespace Bussines_Logic
 
         public async Task<List<Transaction>> SearchTransactionsByCategory(int userId, CategoryType category)
         {
-            User user = await _userService.GetUserById(userId);
+            User? user = await _context.Users.Include(el => el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                throw new Exception("User not found!");
+            }
 
             List<Transaction> transactions = user.Transactions
                 .Where(el => el.Category == category)

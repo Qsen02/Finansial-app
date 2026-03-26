@@ -13,23 +13,36 @@ public partial class Register : ContentPage
 
     private async void OnRegister(object sender, EventArgs e) 
 	{
-		string name = NameEntry.Text;
-		string email = EmailEntry.Text;
-		string password = PasswordEntry.Text;
-		string repass = RepassEntry.Text;
-
-		if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(repass)) 
+		try
 		{
-			await DisplayAlert("Error", "All fields required!", "OK");
-			return;
+			string name = NameEntry.Text;
+			string email = EmailEntry.Text;
+			string password = PasswordEntry.Text;
+			string repass = RepassEntry.Text;
+
+			if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(repass))
+			{
+				await DisplayAlert("Error", "All fields required!", "OK");
+				return;
+			}
+			if (repass != password)
+			{
+				await DisplayAlert("Error", "Password must match!", "OK");
+				return;
+			}
+
+			await _userService.Register(name, email, password);
+			await Shell.Current.GoToAsync("//Home");
 		}
-		if (repass != password) 
+		catch (Exception err) 
 		{
-            await DisplayAlert("Error", "Password must match!", "OK");
-            return;
+            await DisplayAlert("Error", err.Message, "OK");
+			return;
         }
-
-		await _userService.Register(name, email, password);
-		await Shell.Current.GoToAsync("//Home");
     }
+
+	private async void GoToLogin(object sender, EventArgs e) 
+	{
+		await Shell.Current.GoToAsync("//Login");
+	}
 }

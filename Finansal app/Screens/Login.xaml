@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Finansal_app.Screens.Login"
+             Title="Login">
+    <VerticalStackLayout VerticalOptions="Center" Spacing="40">
+        <Label 
+         Text="Log in to your account below."
+         VerticalOptions="Center" 
+         HorizontalOptions="Center" 
+         FontSize="22" 
+         FontAttributes="Bold" />
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center" HorizontalOptions="Center">
+                <Label 
+                 Text="Full name"
+                 FontSize="16"/>
+                <Entry x:Name="NameEntry" Keyboard="Text"  WidthRequest="500"/>
+                <Label 
+                 Text="Password"
+                 FontSize="16"/>
+                <Entry x:Name="PasswordEntry" IsPassword="True" MaximumWidthRequest="500" />
+                <Button Text="Log in" Clicked="OnLogin" BackgroundColor="SkyBlue" TextColor="Black" MaximumWidthRequest="100" FontAttributes="Bold"/>
+            </VerticalStackLayout>
+        </ScrollView>
+        <VerticalStackLayout Spacing="15" VerticalOptions="Center" HorizontalOptions="Center">
+            <Label Text="You don't have account?" FontSize="20" FontAttributes="Bold"/> 
+            <Button Text="Register" Clicked="GoToRegister" BackgroundColor="SkyBlue" TextColor="Black" MaximumWidthRequest="100" FontAttributes="Bold"/>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

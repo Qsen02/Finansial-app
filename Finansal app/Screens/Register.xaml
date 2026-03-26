@@ -3,40 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Finansal_app.Screens.Register"
              Title="Register">
-    <VerticalStackLayout>
+    <VerticalStackLayout VerticalOptions="Center" Spacing="40">
         <Label 
             Text="Wellcome to Finansial app! Make your registration below."
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
-            FontSize="20"/>
+            FontSize="22" 
+            FontAttributes="Bold" />
         <ScrollView>
-            <VerticalStackLayout Padding="20" Spacing="15">
+            <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center" HorizontalOptions="Center"> 
                 <Label 
                     Text="Full name"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Start" 
                     FontSize="16"/>
-                <Entry x:Name="NameEntry" Keyboard="Text"  WidthRequest="250" HorizontalOptions="Center"/>
+                <Entry x:Name="NameEntry" Keyboard="Text"  WidthRequest="500"/>
                 <Label 
                     Text="Email"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Start" 
                     FontSize="16"/>
-                <Entry x:Name="EmailEntry" Keyboard="Email"  WidthRequest="250" HorizontalOptions="Center"/>
+                <Entry x:Name="EmailEntry" Keyboard="Email"  WidthRequest="500"/>
                 <Label 
                     Text="Password"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Start" 
                     FontSize="16"/>
-                <Entry x:Name="PasswordEntry" IsPassword="True" WidthRequest="250" HorizontalOptions="Center"/>
+                <Entry x:Name="PasswordEntry" IsPassword="True" MaximumWidthRequest="500" />
                 <Label 
                     Text="Repeat password"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Start" 
                     FontSize="16"/>
-                <Entry x:Name="RepassEntry"  IsPassword="True" WidthRequest="250" HorizontalOptions="Center"/>
-                <Button Text="Register" Clicked="OnRegister" BackgroundColor="SkyBlue" TextColor="White"/>
+                <Entry x:Name="RepassEntry"  IsPassword="True" WidthRequest="500" />
+                <Button Text="Register" Clicked="OnRegister" BackgroundColor="SkyBlue" TextColor="Black" MaximumWidthRequest="100" FontAttributes="Bold"/>
             </VerticalStackLayout>
         </ScrollView>
+        <VerticalStackLayout Spacing="15" VerticalOptions="Center" HorizontalOptions="Center">
+            <Label Text="Already have account?" FontSize="20" FontAttributes="Bold"/>
+            <Button Text="Log in" Clicked="GoToLogin" BackgroundColor="SkyBlue" TextColor="Black" MaximumWidthRequest="100" FontAttributes="Bold"/>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

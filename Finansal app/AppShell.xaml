@@ -14,5 +14,9 @@
         Title="Register"
         ContentTemplate="{DataTemplate local:Register}"
         Route="Register" />
+    <ShellContent
+     Title="Login"
+     ContentTemplate="{DataTemplate local:Login}"
+     Route="Login" />
 
 </Shell>
