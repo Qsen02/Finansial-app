@@ -1,6 +1,7 @@
 ﻿using Bussines_Logic;
 using Data;
 using Finansal_app.Screens;
+using Finansal_app.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -27,6 +28,8 @@ namespace Finansal_app
             ));
             builder.Services.AddSingleton<TransactionService>();
             builder.Services.AddSingleton<UserService>();
+            builder.Services.AddTransient<HomeViewModel>();
+            builder.Services.AddTransient<Home>();
 #endif
 
             return builder.Build();

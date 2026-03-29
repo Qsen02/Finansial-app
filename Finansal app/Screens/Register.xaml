@@ -33,7 +33,7 @@
         </ScrollView>
         <VerticalStackLayout Spacing="15" VerticalOptions="Center" HorizontalOptions="Center">
             <Label Text="Already have account?" FontSize="20" FontAttributes="Bold"/>
-            <Button Text="Log in" Clicked="GoToLogin" BackgroundColor="SkyBlue" TextColor="Black" MaximumWidthRequest="100" FontAttributes="Bold"/>
+            <Button Text="Log in" Clicked="GoToLogin" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" MaximumWidthRequest="100" FontAttributes="Bold"/>
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

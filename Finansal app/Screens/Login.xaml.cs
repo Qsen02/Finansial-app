@@ -1,4 +1,5 @@
 using Bussines_Logic;
+using Data.Models;
 
 namespace Finansal_app.Screens;
 
@@ -23,7 +24,8 @@ public partial class Login : ContentPage
                 return;
             }
 
-            await _userService.Login(name, password);
+            User newUser = await _userService.Login(name, password);
+            await SecureStorage.SetAsync("userId", newUser.Id.ToString());
             await Shell.Current.GoToAsync("//Home");
         }
         catch (Exception err) 
