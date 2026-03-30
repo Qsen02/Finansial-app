@@ -20,7 +20,7 @@
                  Text="Password"
                  FontSize="16"/>
                 <Entry x:Name="PasswordEntry" IsPassword="True" MaximumWidthRequest="500" />
-                <Button Text="Log in" Clicked="OnLogin" BackgroundColor="SkyBlue" TextColor="Black" MaximumWidthRequest="100" FontAttributes="Bold"/>
+                <Button Text="Log in" Clicked="OnLogin" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" MaximumWidthRequest="100" FontAttributes="Bold"/>
             </VerticalStackLayout>
         </ScrollView>
         <VerticalStackLayout Spacing="15" VerticalOptions="Center" HorizontalOptions="Center">

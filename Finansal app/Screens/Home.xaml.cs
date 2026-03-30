@@ -19,5 +19,18 @@ namespace Finansal_app.Screens
             _loaded = true;
             await _viewModel.LoadUserAsync();
         }
+
+        public void GoToExpenseForm(object sender, EventArgs e) 
+        {
+
+        }
+        public void GoToIncameForm(object sender, EventArgs e) 
+        {
+
+        }
+        public void MakeReport(object sender, EventArgs e) 
+        {
+
+        }
     }
 }

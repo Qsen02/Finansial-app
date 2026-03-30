@@ -28,7 +28,7 @@
                     Text="Repeat password"
                     FontSize="16"/>
                 <Entry x:Name="RepassEntry"  IsPassword="True" WidthRequest="500" />
-                <Button Text="Register" Clicked="OnRegister" BackgroundColor="SkyBlue" TextColor="Black" MaximumWidthRequest="100" FontAttributes="Bold"/>
+                <Button Text="Register" Clicked="OnRegister" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" MaximumWidthRequest="100" FontAttributes="Bold"/>
             </VerticalStackLayout>
         </ScrollView>
         <VerticalStackLayout Spacing="15" VerticalOptions="Center" HorizontalOptions="Center">

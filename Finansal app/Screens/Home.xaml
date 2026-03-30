@@ -4,11 +4,11 @@
              x:Class="Finansal_app.Screens.Home">
 
     <VerticalStackLayout HorizontalOptions="Center" Padding="30" Spacing="30">
-            <Label Text="{Binding User.Username, StringFormat='Welcome {0}!'}" 
+        <Label Text="{Binding User.Username, StringFormat='Welcome {0}!'}" 
                VerticalOptions="Center" 
                HorizontalOptions="Center"
                FontSize="30" FontAttributes="Bold"/>
-            <Frame
+        <Frame
                 BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}"
                 CornerRadius="20"
                 Padding="30">
@@ -16,18 +16,18 @@
                VerticalOptions="Center" 
                HorizontalOptions="Center"
                FontSize="30" FontAttributes="Bold" TextColor="Black"/>
-            </Frame>
+        </Frame>
         <HorizontalStackLayout Spacing="20">
-            <Frame BackgroundColor="{AppThemeBinding Light=Grey, Dark=DarkGrey}"
+            <Frame BackgroundColor="{AppThemeBinding Light=#e6e6e6, Dark=#282828}"
                    CornerRadius="20"
                    Padding="30">
                 <VerticalStackLayout Spacing="20">
                     <Label Text="Expense options" FontSize="20" VerticalOptions="Center" 
                            HorizontalOptions="Center" FontAttributes="Bold"/>
-                    <Button Text="Make expense" Clicked="GoToExpenceForm" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold"/>
+                    <Button Text="Make expense" Clicked="GoToExpenseForm" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame BackgroundColor="{AppThemeBinding Light=Grey, Dark=DarkGrey}"
+            <Frame BackgroundColor="{AppThemeBinding Light=#e6e6e6, Dark=#282828}"
                    CornerRadius="20"
                    Padding="30">
                 <VerticalStackLayout Spacing="20">
@@ -36,7 +36,7 @@
                     <Button Text="Add money" Clicked="GoToIncameForm" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame BackgroundColor="{AppThemeBinding Light=Grey, Dark=DarkGrey}"
+            <Frame BackgroundColor="{AppThemeBinding Light=#e6e6e6, Dark=#282828}"
                    CornerRadius="20"
                    Padding="30">
                 <VerticalStackLayout Spacing="20">
@@ -47,5 +47,4 @@
             </Frame>
         </HorizontalStackLayout>
     </VerticalStackLayout>
-
 </ContentPage>
