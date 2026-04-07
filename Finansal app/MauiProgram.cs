@@ -28,8 +28,8 @@ namespace Finansal_app
             ));
             builder.Services.AddSingleton<TransactionService>();
             builder.Services.AddSingleton<UserService>();
-            builder.Services.AddTransient<HomeViewModel>();
-            builder.Services.AddTransient<Home>();
+            builder.Services.AddSingleton<UserViewModel>();
+            builder.Services.AddSingleton<TransactionViewModel>();
 #endif
 
             return builder.Build();

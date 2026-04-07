@@ -18,5 +18,16 @@
       Title="Home"
       ContentTemplate="{DataTemplate local:Home}"
       Route="Home" />
-
+    <ShellContent
+      Title="Make Incame"
+      ContentTemplate="{DataTemplate local:MakeIncame}"
+      Route="MakeIncame" />
+    <ShellContent
+      Title="Make Expense"
+      ContentTemplate="{DataTemplate local:MakeExpense}"
+      Route="MakeExpense" />
+    <ShellContent
+    Title="Transactions"
+    ContentTemplate="{DataTemplate local:Transactions}"
+    Route="Transactions" />
 </Shell>

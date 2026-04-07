@@ -1,14 +1,15 @@
 using Bussines_Logic;
 using Data.Models;
+using Finansal_app.ViewModels;
 
 namespace Finansal_app.Screens;
 
 public partial class Login : ContentPage
 {
-    private readonly UserService _userService;
-	public Login(UserService userService)
+    private readonly UserViewModel _viewModel;
+	public Login(UserViewModel viewModel)
 	{
-        _userService = userService;
+        _viewModel = viewModel;
 		InitializeComponent();
 	}
     private async void OnLogin(object sender, EventArgs e)
@@ -24,7 +25,7 @@ public partial class Login : ContentPage
                 return;
             }
 
-            User newUser = await _userService.Login(name, password);
+            User newUser = await _viewModel.Login(name, password);
             await SecureStorage.SetAsync("userId", newUser.Id.ToString());
             await Shell.Current.GoToAsync("//Home");
         }

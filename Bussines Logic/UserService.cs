@@ -56,7 +56,7 @@ namespace Bussines_Logic
             }
             return user;
         }
-        public async Task<User> AddTransactionToUser(int userId, string description, int price, CategoryType category, TypeEnum type) 
+        public async Task<User> AddTransactionToUser(int userId, string description, decimal price, CategoryType category, TypeEnum type) 
         {
             Transaction newTrasaction = new Transaction()
             {

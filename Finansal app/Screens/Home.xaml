@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Finansal_app.Screens.Home">
+             x:Class="Finansal_app.Screens.Home"
+             Title="Home">
 
     <VerticalStackLayout HorizontalOptions="Center" Padding="30" Spacing="30">
         <Label Text="{Binding User.Username, StringFormat='Welcome {0}!'}" 
@@ -12,7 +13,7 @@
                 BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}"
                 CornerRadius="20"
                 Padding="30">
-            <Label Text="{Binding User.Balance, StringFormat='Your balance: {0} Euro'}" 
+            <Label Text="{Binding Balance, StringFormat='Your balance: {0} Euro'}" 
                VerticalOptions="Center" 
                HorizontalOptions="Center"
                FontSize="30" FontAttributes="Bold" TextColor="Black"/>
@@ -31,9 +32,9 @@
                    CornerRadius="20"
                    Padding="30">
                 <VerticalStackLayout Spacing="20">
-                    <Label Text="Incames options" FontSize="20" VerticalOptions="Center" 
+                    <Label Text="Incame options" FontSize="20" VerticalOptions="Center" 
                            HorizontalOptions="Center" FontAttributes="Bold"/>
-                    <Button Text="Add money" Clicked="GoToIncameForm" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold"/>
+                    <Button Text="Make incame" Clicked="GoToIncameForm" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold"/>
                 </VerticalStackLayout>
             </Frame>
             <Frame BackgroundColor="{AppThemeBinding Light=#e6e6e6, Dark=#282828}"
@@ -43,6 +44,17 @@
                     <Label Text="Options for reports" FontSize="20" VerticalOptions="Center" 
                            HorizontalOptions="Center" FontAttributes="Bold"/>
                     <Button Text="Make report" Clicked="MakeReport" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold"/>
+                </VerticalStackLayout>
+            </Frame>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="20">
+            <Frame BackgroundColor="{AppThemeBinding Light=#e6e6e6, Dark=#282828}"
+                CornerRadius="20"
+                Padding="30">
+                <VerticalStackLayout Spacing="20">
+                    <Label Text="Options for transactions" FontSize="20" VerticalOptions="Center" 
+                     HorizontalOptions="Center" FontAttributes="Bold"/>
+                    <Button Text="All transactions" Clicked="SeeTransactions" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold"/>
                 </VerticalStackLayout>
             </Frame>
         </HorizontalStackLayout>

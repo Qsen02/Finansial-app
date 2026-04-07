@@ -21,7 +21,7 @@ namespace Bussines_Logic
             }
             return transaction;
         }
-        public async Task<Transaction> CreateTransaction(string description, int price, CategoryType category, TypeEnum type) {
+        public async Task<Transaction> CreateTransaction(string description, decimal price, CategoryType category, TypeEnum type) {
             Transaction newTrasaction = new Transaction() 
             {
                 Description = description,
