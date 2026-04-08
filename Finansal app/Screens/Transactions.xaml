@@ -3,10 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Finansal_app.Screens.Transactions"
              Title="Transactions">
-    <VerticalStackLayout>
+    <Grid RowDefinitions="Auto,Auto,*" Padding="20">
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Grid.Row="0"
+            Text="All transactions"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+            HorizontalOptions="Center" FontSize="26" FontAttributes="Bold"/>
+        <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="1" Padding="20" Spacing="30">
+            <Button Text="Incames" Clicked="SortByIncames" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold"/>
+            <Button Text="Expenses" Clicked="SortByExpenses" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold"/>
+        </HorizontalStackLayout>
+        <CollectionView ItemsSource="{Binding Transactions}" VerticalScrollBarVisibility="Always" Grid.Row="2">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                           ItemSpacing="20"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="20"
+                           Padding="30"
+                           Margin="30"
+                           BackgroundColor="{AppThemeBinding Light=#e6f7ff, Dark=#2f2f2f}">
+
+                        <VerticalStackLayout Spacing="20"
+                               HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                            <HorizontalStackLayout HorizontalOptions="Center">
+                                <Label Text="{Binding Description}"
+                                   FontSize="20"
+                                   FontAttributes="Bold"/>
+                            </HorizontalStackLayout >
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                                <Label Text="{Binding Price, StringFormat='Price: {0}'}"  FontSize="16"/>
+
+                                <Label Text="{Binding Category, StringFormat='Category: {0}'}" FontSize="16"/>
+
+                                <Label Text="{Binding Type, StringFormat='Type: {0}'}" FontSize="16"/>
+
+                                <Label Text="{Binding Created_at, StringFormat='Date: {0:dd/MM/yyyy}'}"
+                                       FontSize="14"
+                                       TextColor="DarkGray"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

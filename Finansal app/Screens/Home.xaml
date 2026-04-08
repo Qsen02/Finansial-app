@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Finansal_app.Screens.Home"
              Title="Home">
-
+    
     <VerticalStackLayout HorizontalOptions="Center" Padding="30" Spacing="30">
         <Label Text="{Binding User.Username, StringFormat='Welcome {0}!'}" 
                VerticalOptions="Center" 
@@ -47,7 +47,7 @@
                 </VerticalStackLayout>
             </Frame>
         </HorizontalStackLayout>
-        <HorizontalStackLayout Spacing="20">
+        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
             <Frame BackgroundColor="{AppThemeBinding Light=#e6e6e6, Dark=#282828}"
                 CornerRadius="20"
                 Padding="30">

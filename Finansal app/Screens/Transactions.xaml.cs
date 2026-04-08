@@ -1,4 +1,3 @@
-using AndroidX.Lifecycle;
 using Finansal_app.ViewModels;
 
 namespace Finansal_app.Screens;
@@ -6,14 +5,25 @@ namespace Finansal_app.Screens;
 public partial class Transactions : ContentPage
 {
     private readonly TransactionViewModel viewModel;
-	public Transactions(TransactionViewModel viewModel)
+    private readonly UserViewModel userViewModel;
+	public Transactions(TransactionViewModel viewModel,UserViewModel userViewModel)
 	{
+        InitializeComponent();
         this.viewModel = viewModel;
-		InitializeComponent();
+        this.userViewModel = userViewModel;
+        BindingContext = viewModel;
 	}
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await viewModel.LoadTransactionsForUser();
+        await viewModel.LoadTransactionsForUser(userViewModel.UserId);
+    }
+    public async void SortByIncames(object sender,EventArgs e) 
+    {
+        await viewModel.LoadIncamesForUser(userViewModel.UserId);
+    }
+    public async void SortByExpenses(object sender, EventArgs e)
+    {
+        await viewModel.LoadExpensesForUser(userViewModel.UserId);
     }
 }

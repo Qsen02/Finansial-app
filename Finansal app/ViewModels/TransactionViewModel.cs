@@ -20,7 +20,25 @@ namespace Finansal_app.ViewModels
         }
         public async Task LoadTransactionsForUser(int UserId) 
         {
+            List<Transaction> transactions = await _transactionService.GetAllTransactionsForUser(UserId);
+            Transactions.Clear();
+            foreach (Transaction transaction in transactions)
+            {
+                Transactions.Add(transaction);
+            }
+        }
+        public async Task LoadIncamesForUser(int UserId)
+        {
             List<Transaction> transactions = await _transactionService.GetAllIncamesForUser(UserId);
+            Transactions.Clear();
+            foreach (Transaction transaction in transactions)
+            {
+                Transactions.Add(transaction);
+            }
+        }
+        public async Task LoadExpensesForUser(int UserId)
+        {
+            List<Transaction> transactions = await _transactionService.GetAllExpensesForUser(UserId);
             Transactions.Clear();
             foreach (Transaction transaction in transactions)
             {

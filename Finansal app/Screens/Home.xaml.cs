@@ -33,9 +33,9 @@ namespace Finansal_app.Screens
         {
 
         }
-        public void SeeTransactions(object sender, EventArgs e) 
+        public async void SeeTransactions(object sender, EventArgs e) 
         {
-
+            await Shell.Current.GoToAsync("//Transactions");
         }
     }
 }

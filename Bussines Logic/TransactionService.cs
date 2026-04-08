@@ -33,15 +33,35 @@ namespace Bussines_Logic
             await _context.SaveChangesAsync(); 
             return newTrasaction;
         }
-        public async Task<List<Transaction>> GetAllIncamesForUser(int userId) 
+        public async Task<List<Transaction>> GetAllTransactionsForUser(int userId) 
         {
             User? user = await _context.Users.Include(el => el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null)
             {
                 throw new Exception("User not found!");
             }
-            List<Transaction> incames = user.Transactions.Where(el => el.Type == TypeEnum.Income).ToList();
-            return incames;
+            List<Transaction> transactions = user.Transactions.ToList();
+            return transactions;
+        }
+        public async Task<List<Transaction>> GetAllIncamesForUser(int userId)
+        {
+            User? user = await _context.Users.Include(el => el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                throw new Exception("User not found!");
+            }
+            List<Transaction> transactions = user.Transactions.Where(el=>el.Type == TypeEnum.Income).ToList();
+            return transactions;
+        }
+        public async Task<List<Transaction>> GetAllExpensesForUser(int userId)
+        {
+            User? user = await _context.Users.Include(el => el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                throw new Exception("User not found!");
+            }
+            List<Transaction> transactions = user.Transactions.Where(el => el.Type == TypeEnum.Expenses).ToList();
+            return transactions;
         }
         public async Task<List<Transaction>> GetUserTransactionsByDate(int userId,int year, int month) 
         {

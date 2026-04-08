@@ -27,7 +27,7 @@
       ContentTemplate="{DataTemplate local:MakeExpense}"
       Route="MakeExpense" />
     <ShellContent
-    Title="Transactions"
-    ContentTemplate="{DataTemplate local:Transactions}"
-    Route="Transactions" />
+      Title="Transactions"
+      ContentTemplate="{DataTemplate local:Transactions}"
+      Route="Transactions" />
 </Shell>
