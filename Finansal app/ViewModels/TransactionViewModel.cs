@@ -45,6 +45,15 @@ namespace Finansal_app.ViewModels
                 Transactions.Add(transaction);
             }
         }
+        public async Task SearchTransactionsByKeywords(int userId, string keyword) 
+        {
+            List<Transaction> transactions = await _transactionService.SearchTransactionsByKeywords(userId,keyword);
+            Transactions.Clear();
+            foreach (Transaction transaction in transactions)
+            {
+                Transactions.Add(transaction);
+            }
+        }
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = "")
                 => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

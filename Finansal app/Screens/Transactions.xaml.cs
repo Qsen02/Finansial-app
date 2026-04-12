@@ -1,4 +1,5 @@
 using Finansal_app.ViewModels;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Finansal_app.Screens;
 
@@ -25,5 +26,25 @@ public partial class Transactions : ContentPage
     public async void SortByExpenses(object sender, EventArgs e)
     {
         await viewModel.LoadExpensesForUser(userViewModel.UserId);
+    }
+    public async void OnSearch(object sender, EventArgs e)
+    {
+        try
+        {
+            string keyword = Keyword.Text;
+            if (keyword == null) {
+                keyword = string.Empty;
+            }
+            await viewModel.SearchTransactionsByKeywords(userViewModel.UserId, keyword);
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+            return;
+        }
+    }
+    public async void OnBack(object sender, EventArgs e) 
+    {
+        await Shell.Current.GoToAsync("//Home");
     }
 }

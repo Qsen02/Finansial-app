@@ -87,7 +87,7 @@ namespace Bussines_Logic
             }
 
             List<Transaction> transactions = user.Transactions
-                .Where(el=>EF.Functions.Like(el.Description,$"%{keyword}%"))
+                .Where(el=>el.Description.Contains(keyword, StringComparison.OrdinalIgnoreCase))
                 .ToList();
             return transactions;
         }
