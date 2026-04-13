@@ -30,4 +30,8 @@
       Title="Transactions"
       ContentTemplate="{DataTemplate local:Transactions}"
       Route="Transactions" />
+    <ShellContent
+      Title="Reports"
+      ContentTemplate="{DataTemplate local:Reports}"
+      Route="Reports" />
 </Shell>

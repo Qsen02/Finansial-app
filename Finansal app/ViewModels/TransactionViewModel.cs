@@ -45,9 +45,9 @@ namespace Finansal_app.ViewModels
                 Transactions.Add(transaction);
             }
         }
-        public async Task SearchTransactionsByKeywords(int userId, string keyword) 
+        public async Task SearchTransactions(int userId, string keyword, CategoryType? category) 
         {
-            List<Transaction> transactions = await _transactionService.SearchTransactionsByKeywords(userId,keyword);
+            List<Transaction> transactions = await _transactionService.SearchTransactions(userId,keyword,category);
             Transactions.Clear();
             foreach (Transaction transaction in transactions)
             {

@@ -14,6 +14,7 @@
                 <Label Text="Category:" FontSize="16" HorizontalOptions="Center"/>
                 <Picker x:Name="Category"  WidthRequest="500">
                     <Picker.Items>
+                        <x:String>All</x:String>
                         <x:String>Food</x:String>
                         <x:String>Technologies</x:String>
                         <x:String>Clothes</x:String>

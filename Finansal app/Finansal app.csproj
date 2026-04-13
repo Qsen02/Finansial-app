@@ -93,6 +93,9 @@
 	  <MauiXaml Update="Screens\Register.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Screens\Reports.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Screens\Transactions.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

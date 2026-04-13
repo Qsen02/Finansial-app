@@ -78,32 +78,27 @@ namespace Bussines_Logic
                 .ToList();
             return transactions;
         }
-        public async Task<List<Transaction>> SearchTransactionsByKeywords(int userId,string keyword) 
+        public async Task<List<Transaction>> SearchTransactions(int userId,string keyword,CategoryType? category) 
         {
             User? user = await _context.Users.Include(el => el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null)
             {
                 throw new Exception("User not found!");
             }
-
-            List<Transaction> transactions = user.Transactions
-                .Where(el=>el.Description.Contains(keyword, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-            return transactions;
-        }
-
-        public async Task<List<Transaction>> SearchTransactionsByCategory(int userId, CategoryType category)
-        {
-            User? user = await _context.Users.Include(el => el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
-            if (user == null)
+            if (category != null)
             {
-                throw new Exception("User not found!");
+                List<Transaction> transactions = user.Transactions
+               .Where(el => el.Description.Contains(keyword, StringComparison.OrdinalIgnoreCase) && el.Category == category)
+               .ToList();
+                return transactions;
             }
-
-            List<Transaction> transactions = user.Transactions
-                .Where(el => el.Category == category)
-                .ToList();
-            return transactions;
+            else
+            {
+                List<Transaction> transactions = user.Transactions
+                    .Where(el => el.Description.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+                return transactions;
+            }
         }
     }
 }

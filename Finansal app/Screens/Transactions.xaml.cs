@@ -1,5 +1,5 @@
+using Data.Models;
 using Finansal_app.ViewModels;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Finansal_app.Screens;
 
@@ -31,11 +31,19 @@ public partial class Transactions : ContentPage
     {
         try
         {
+            CategoryType? categoryEnum = null;
             string keyword = Keyword.Text;
-            if (keyword == null) {
+            string category = Category.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(keyword)) {
                 keyword = string.Empty;
             }
-            await viewModel.SearchTransactionsByKeywords(userViewModel.UserId, keyword);
+
+            if (category != "All" && category != null)
+            {
+                categoryEnum = Enum.Parse<CategoryType>(category);
+            }
+
+            await viewModel.SearchTransactions(userViewModel.UserId, keyword, categoryEnum);
         }
         catch (Exception ex)
         {

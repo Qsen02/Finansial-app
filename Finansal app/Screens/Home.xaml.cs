@@ -29,9 +29,9 @@ namespace Finansal_app.Screens
         {
              await Shell.Current.GoToAsync("//MakeIncame");
         }
-        public void MakeReport(object sender, EventArgs e) 
+        public async void MakeReport(object sender, EventArgs e) 
         {
-
+            await Shell.Current.GoToAsync("//Reports");
         }
         public async void SeeTransactions(object sender, EventArgs e) 
         {
