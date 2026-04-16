@@ -3,13 +3,86 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Finansal_app.Screens.Reports"
              Title="Reports">
-    <VerticalStackLayout>
-        <Grid>
-            <Button Text="&#xf060;" Clicked="OnBack" FontSize="22" FontFamily="FontAwesomeSolid" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start"/>
-            <Label 
+    <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="50">
+        <Grid Grid.Row="0" Padding="50 0 50 30" VerticalOptions="Center">
+            <Button Text="&#xf060;" Clicked="OnBack" FontFamily="FontAwesomeSolid" FontSize="22" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start"/>
+                <Label 
                 Text="Your report for all transactions these month"
                 VerticalOptions="Center" 
-                HorizontalOptions="Center" FontSize="22"/>     
+                HorizontalOptions="Center" FontSize="22"/>
+            <Button Text="Download" Clicked="OnDownloadPdf" FontSize="22" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold" HorizontalOptions="End"/>
         </Grid>
-    </VerticalStackLayout>
+        <Frame Grid.Row="1" BackgroundColor="{AppThemeBinding Light=#e6e6e6, Dark=#282828}"
+                      CornerRadius="30"
+                      Padding="30" HorizontalOptions="Center">
+        <HorizontalStackLayout Spacing="100" HorizontalOptions="Center">
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <Label 
+                   Text="Incames"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" FontSize="26"/>
+                    <Label 
+                    Text="{Binding Food.Incames, StringFormat='Food: {0:N2}€'}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" FontSize="18"/>
+                    <Label 
+                    Text="{Binding Technologies.Incames, StringFormat='Technologies: {0:N2}€'}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" FontSize="18"/>
+                    <Label 
+                    Text="{Binding Clothes.Incames, StringFormat='Clothes: {0:N2}€'}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" FontSize="18"/>
+                    <Label 
+                    Text="{Binding Travels.Incames, StringFormat='Travels: {0:N2}€'}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" FontSize="18"/>
+                    <Label 
+                    Text="{Binding Education.Incames, StringFormat='Education: {0:N2}€'}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" FontSize="18"/>
+                    <Label 
+                    Text="{Binding AllIncames, StringFormat='Total: {0:N2}€'}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" FontSize="22"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <Label 
+                    Text="Expenses"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" FontSize="26"/>
+                    <Label 
+                      Text="{Binding Food.Expenses, StringFormat='Food: {0:N2}€'}"
+                      VerticalOptions="Center" 
+                      HorizontalOptions="Center" FontSize="18"/>
+                    <Label 
+                  Text="{Binding Technologies.Expenses, StringFormat='Technologies: {0:N2}€'}"
+                  VerticalOptions="Center" 
+                  HorizontalOptions="Center" FontSize="18"/>
+                    <Label 
+                  Text="{Binding Clothes.Expenses, StringFormat='Clothes: {0:N2}€'}"
+                  VerticalOptions="Center" 
+                  HorizontalOptions="Center" FontSize="18"/>
+                    <Label 
+                  Text="{Binding Travels.Expenses, StringFormat='Travels: {0:N2}€'}"
+                  VerticalOptions="Center" 
+                  HorizontalOptions="Center" FontSize="18"/>
+                    <Label 
+                  Text="{Binding Education.Expenses, StringFormat='Education: {0:N2}€'}"
+                  VerticalOptions="Center" 
+                  HorizontalOptions="Center" FontSize="18"/>
+                    <Label 
+                   Text="{Binding AllExpenses, StringFormat='Total: {0:N2}€'}"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" FontSize="22"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            </Frame>
+        <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="2">
+            <Label 
+                 Text="{Binding Difference, StringFormat='Your incame for this month is: {0:N2}€'}"
+                 VerticalOptions="Center" 
+                 HorizontalOptions="Center" FontSize="22"/> 
+            </HorizontalStackLayout>
+    </Grid>
 </ContentPage>

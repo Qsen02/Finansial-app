@@ -4,7 +4,7 @@
              x:Class="Finansal_app.Screens.Transactions"
              Title="Transactions">
     <Grid RowDefinitions="Auto,Auto,Auto,*" Padding="20">
-        <Grid  Grid.Row="0">
+        <Grid  Grid.Row="0" VerticalOptions="Center" Padding="30 0 30 0">
             <Button Text="&#xf060;" Clicked="OnBack" FontSize="22" FontFamily="FontAwesomeSolid" BackgroundColor="{AppThemeBinding Light=SkyBlue, Dark=DeepSkyBlue}" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start"/>
             <Label 
                  Text="All transactions"

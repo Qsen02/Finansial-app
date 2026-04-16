@@ -31,6 +31,8 @@ namespace Finansal_app
             builder.Services.AddSingleton<UserService>();
             builder.Services.AddSingleton<UserViewModel>();
             builder.Services.AddSingleton<TransactionViewModel>();
+            builder.Services.AddTransient<ReportViewModel>();
+            QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 #endif
 
             return builder.Build();

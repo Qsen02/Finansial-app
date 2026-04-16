@@ -63,18 +63,18 @@ namespace Bussines_Logic
             List<Transaction> transactions = user.Transactions.Where(el => el.Type == TypeEnum.Expenses).ToList();
             return transactions;
         }
-        public async Task<List<Transaction>> GetUserTransactionsByDate(int userId,int year, int month) 
+        public async Task<List<Transaction>> GetUserTransactionsLastMonth(int userId) 
         {
             User? user = await _context.Users.Include(el => el.Transactions).FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null)
             {
                 throw new Exception("User not found!");
             }
-            var start = new DateOnly(year, month, 1);
-            var end = start.AddMonths(1);
+            var start = DateOnly.FromDateTime(DateTime.Today);
+            var end = start.AddMonths(-1);
 
             List<Transaction> transactions= user.Transactions
-                .Where(t => t.Created_at >= start && t.Created_at < end)
+                .Where(t => t.Created_at <= start && t.Created_at >= end)
                 .ToList();
             return transactions;
         }
